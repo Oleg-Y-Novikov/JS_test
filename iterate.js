@@ -1,126 +1,145 @@
-// ЦИКЛЫ
+// ИТЕРАТОРЫ
 
-// for
-/* Цикл for содержит три выражения, разделенные ;скобками:
+// .forEach()
+// .forEach() будет выполнять один и тот же код для каждого элемента массива.
+// Возвращаемое значение .forEach() всегда будет undefined.
+const artists = ['Picasso', 'Kahlo', 'Matisse', 'Utamaro'];
 
-1. инициализация запускает цикл и может также использоваться для объявления переменной итератора.
-2. условие остановки — это условие, по которому оценивается переменная итератора: если условие соответствует true 
-   результату, блок кода будет запущен, а если он соответствует false— код остановится.
-3. оператор итерации используется для обновления переменной итератора в каждом цикле.
+artists.forEach(artist => {
+  console.log(artist + ' is one of my favorite artists.');
+});
 
-Синтаксис for цикла выглядит следующим образом:
-*/
-for (let counter = 0; counter < 4; counter++) {
-  console.log(counter); // 0 1 2 3
-}
+// Метод forEach() выполняет указанную функцию один раз для каждого элемента в массиве.
+const fruits = ['mango', 'papaya', 'pineapple', 'apple'];
+fruits.forEach(iterate);
 
-for (let counter = 3; counter >= 0; counter--) {
-  console.log(counter);
-}; // 3 2 1 0
+function iterate(el) {
+  console.log(`I want to eat a ${el}`);
+};
+// равнозначно 
+fruits.forEach((el) => {
+  console.log(`I want to eat a ${el}`);
+}); // стрелочная функция
 
 //######################################################################################################################
 
-// FOR ARRAY
-const vacationSpots = ['Bali', 'Paris', 'Tulum'];
+// .map
+// Метод map() создаёт новый массив с результатом вызова указанной функции для каждого элемента массива.
 
-for (let i = 0; i < vacationSpots.length; i++) {
-  console.log(`I would love to visit ${vacationSpots[i]}`);
-}
+const numbers = [1, 2, 3, 4, 5];
 
-
-// ВЛОЖЕННЫЙ ЦИКЛ for
-// Одно из применений вложенного for цикла — сравнение элементов двух массивов. 
-// Для каждого раунда внешнего for цикла внутренний for цикл будет выполняться полностью.
-
-const myArray = [6, 19, 20];
-const yourArray = [19, 81, 2];
-for (let i = 0; i < myArray.length; i++) {
-  for (let j = 0; j < yourArray.length; j++) {
-    if (myArray[i] === yourArray[j]) {
-      console.log('Both loops have the number: ' + yourArray[j])
-    }
-  }
-};
+const squareNumbers = numbers.map(number => {
+  return number * number;
+});
+console.log(squareNumbers); // [ 1, 4, 9, 16, 25 ]
 
 //**********************************************************************************************************************
+const animals = ['Hen', 'elephant', 'llama', 'leopard', 'ostrich', 'Whale', 'octopus', 'rabbit', 'lion', 'dog'];
 
-let bobsFollowers = ['Jane', 'Sam', 'Joe', 'Stive'];
-let tinasFollowers = ['Sam', 'Oleg', 'Joe'];
-let mutualFollowers = [];
+const secretMessage = animals.map((el) => el[0]); // Тело функции, состоящее из однострочного блока, не нуждается в фигурных скобках.
+console.log(secretMessage.join('')); // HelloWorld
 
-for (let i = 0; i < bobsFollowers.length; i++) {
-  for (let j = 0; j < tinasFollowers.length; j++) {
-    if (bobsFollowers[i] === tinasFollowers[j]) {
-       mutualFollowers.push(bobsFollowers[i]);
-    }
-  }
-}
-console.log(mutualFollowers);
+// равнозначно
+const secretMessage2 = animals.map((el) => {
+  return el[0];
+});
+console.log(secretMessage2.join('')); // HelloWorld
 
 //######################################################################################################################
 
-// ЦИКЛ WHILE
-let counterTwo = 1;
-while (counterTwo < 4) {
-  console.log(counterTwo);
-  counterTwo++;
-}
-//**************************************************************** */
-const cards = ['diamond', 'spade', 'heart', 'club'];
-let currentCard;
-while (currentCard !== 'spade') {
-  currentCard = cards[Math.floor(Math.random() * 4)];
-  console.log(currentCard);
-}
+// .filter
+// .filter() возвращает массив элементов после фильтрации определенных элементов из исходного массива. 
+const things = ['desk', 'chair', 5, 'backpack', 3.14, 100];
 
-// ЦИКЛ DO...WHILE
-// цикл while и do...while отличается! В отличие от while цикла, do...while будет выполняться хотя бы один раз, 
-// независимо от того, оценивается ли условие как true.
-const firstMessage = 'I will print!';
-const secondMessage = 'I will not print!'; 
+const onlyNumbers = things.filter(thing => {
+  return typeof thing === 'number';
+});
+console.log(onlyNumbers); // [ 5, 3.14, 100 ]
+
+//**********************************************************************************************************************
+const words = ['chair', 'music', 'pillow', 'brick', 'pen', 'door']; 
  
-// A do while with a stopping condition that evaluates to false
-do {
- console.log(firstMessage)
-} while (true === false);
+const shortWords = words.filter((word) => { // стрелочная функция (argument) => { тело функции }
+  return word.length < 6;
+});
+
+//######################################################################################################################
+
+// .findIndex()
+// Метод findIndex() возвращает индекс в массиве, если элемент удовлетворяет условию проверяющей функции. 
+// В противном случае возвращается -1.
+// Также смотрите метод find(), который возвращает значение найденного в массиве элемента вместо его индекса.
+
+const jumbledNums = [123, 25, 78, 5, 9]; 
  
-// A while loop with a stopping condition that evaluates to false
-while (true === false){
-  console.log(secondMessage)
-};
+const lessThanTen = jumbledNums.findIndex(num => {
+  return num < 10;
+});
+console.log(lessThanTen); // 3 - индекс первого найденного элемента в массиве удовлетворяющего условию
 
-//*********************************************************************** */
-let countString = '';
-let i = 0;
+const animal = ['hippo', 'tiger', 'lion', 'seal', 'cheetah', 'monkey', 'salamander', 'elephant'];
+
+const foundAnimal = animal.findIndex((word) => word === 'elephant');
+
+const startsWithS = animal.findIndex((word) => word.startsWith('s'));
+
+//######################################################################################################################
+
+// .reduce()
+// Метод reduce() применяет функцию reducer к каждому элементу массива (слева-направо), 
+// возвращая одно результирующее значение.
+const numbersA = [1, 2, 4, 10];
  
-do {
-  countString = countString + i;
-  i++;
-} while (i < 5);
+const summedNumsA = numbersA.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue
+})
+console.log(summedNumsA) // Output: 17
+
+// также может принимать необязательный второй параметр для установки начального значения accumulator
+const numbersB = [1, 2, 4, 10];
  
-console.log(countString); // 01234
+const summedNumsB = numbersB.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue
+}, 100)  // <- Second argument for .reduce()
+console.log(summedNumsB); // Output: 117
 
-//*************************************************************************** */
-let cupsOfSugarNeeded = 0;
-let cupsAdded = 0;
 
-do {
-  cupsAdded++
-  console.log(cupsAdded);
-} while (cupsAdded < cupsOfSugarNeeded);
-// 1
+const newNumbers = [1, 3, 5, 7];
 
-// break
-const rapperArray = ["Lil' Kim", "Jay-Z", "Notorious B.I.G.", "Tupac"];
+const newSum = newNumbers.reduce((accumulator, currentValue) => {
+  console.log('The value of accumulator: ', accumulator);
+  console.log('The value of currentValue: ', currentValue);
+  return accumulator + currentValue;
+}, 10);
 
-for (let i = 0; i < rapperArray.length; i++) {
-  console.log(rapperArray[i]);
-  if (rapperArray[i] === "Notorious B.I.G.") {
-    break;
-  }
-}
-console.log("And if you don't know, now you know.");
-// Lil' Kim
-// Jay-Z
-// Notorious B.I.G.
-// And if you don't know, now you know.
+console.log(newSum);
+/*
+The value of accumulator:  10
+The value of currentValue:  1
+The value of accumulator:  11
+The value of currentValue:  3
+The value of accumulator:  14
+The value of currentValue:  5
+The value of accumulator:  19
+The value of currentValue:  7
+26
+*/
+
+//######################################################################################################################
+
+// .some()
+// Метод some() проверяет, удовлетворяет ли какой-либо элемент массива условию, заданному в передаваемой функции.
+
+// .every()
+// Метод every() проверяет, удовлетворяют ли все элементы массива условию, заданному в передаваемой функции.
+
+const wordss = ['unique', 'uncanny', 'pique', 'oxymoron', 'guise'];
+// .some()
+console.log(wordss.some((word) => {
+  return word.length < 6; // true
+}));
+
+// .filter()
+const interestingWords = wordss.filter((word) => word.length > 5);
+// .every()
+console.log(interestingWords.every((word) => word.length > 5)); // true
