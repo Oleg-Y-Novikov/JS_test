@@ -109,3 +109,24 @@ console.log(animals.slice());
 const array = ['orange juice', 'bananas', 'coffee beans', 'brown rice', 'pasta', 'coconut oil', 'plantains'];
 console.log(array.indexOf('pasta')); // 4
 console.log(array.indexOf('Hello World')); // -1
+
+// .at()
+let fruits = ["Apple", "Orange", "Plum"];
+// то же самое, что и fruits[fruits.length-1]
+alert( fruits.at(-1) ); // Plum
+
+
+// для массивов возможен и другой вариант цикла, for..of:
+let fruits = ["Яблоко", "Апельсин", "Слива"];
+
+// проходит по значениям
+for (let fruit of fruits) {
+  alert( fruit );
+}
+// Цикл for..of не предоставляет доступа к номеру текущего элемента, 
+// только к его значению, но в большинстве случаев этого достаточно. 
+
+// forEach
+["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
+  alert(`${item} имеет позицию ${index} в ${array}`);
+});

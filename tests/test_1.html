@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function ask(question, yes, no) {
+      confirm(question) ? yes() : no();
+    }
+
+    // анонимная функция обычного вида
+    ask(
+      "Вы согласны?",
+      function() { alert("Вы согласились."); }, // анонимная функция (не имеет названия)
+      function() { alert("Вы отменили выполнение."); }
+    );
+
+    // анонимная функция стрелочного вида
+    ask(
+      "Вы согласны?",
+      () => alert("Вы согласились."), // анонимная функция (не имеет названия)
+      () => alert("Вы отменили выполнение.")
+    );
+  </script>
+</body>
+</html>
